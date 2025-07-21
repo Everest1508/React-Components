@@ -52,6 +52,9 @@
       "optional": true
     }
   },
+  "dependencies": {
+    "lucide-react": "^0.294.0"
+  },
   "devDependencies": {
     "@storybook/addon-essentials": "^7.6.0",
     "@storybook/addon-interactions": "^7.6.0",

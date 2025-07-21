@@ -1,196 +1,517 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { NerdCard } from './Card'
-import { NerdButton } from './Button'
+import { Card } from './Card'
+import { Button } from './Button'
+import { Input } from './Input'
+import {
+    BarChart3,
+    Users,
+    DollarSign,
+    ShoppingCart,
+    TrendingUp,
+    TrendingDown,
+    Activity,
+    Settings,
+    MoreVertical,
+    Star,
+    Heart,
+    Bookmark,
+    Share,
+    MessageCircle,
+    Eye,
+    Calendar,
+    Clock,
+    MapPin,
+    User,
+    Mail,
+    Phone
+} from 'lucide-react'
 import React from 'react'
 
-const meta: Meta<typeof NerdCard> = {
-  title: 'Nerd/NerdCard',
-  component: NerdCard,
-  parameters: {
-    layout: 'centered',
-    backgrounds: {
-      default: 'dark',
-      values: [
-        { name: 'dark', value: '#0f0f0f' },
-        { name: 'matrix', value: '#001100' },
-        { name: 'cyber', value: '#0a0a0a' },
-      ],
+const meta: Meta<typeof Card> = {
+    title: 'Components/Card',
+    component: Card,
+    parameters: {
+        layout: 'centered',
     },
-  },
-  tags: ['autodocs'],
-  argTypes: {
-    variant: {
-      control: { type: 'select' },
-      options: ['terminal', 'hologram', 'cyber', 'matrix', 'neon', 'glass', 'plasma'],
+    tags: ['autodocs'],
+    argTypes: {
+        variant: {
+            control: { type: 'select' },
+            options: ['elevated', 'outlined', 'filled', 'ghost'],
+        },
+        padding: {
+            control: { type: 'select' },
+            options: ['none', 'sm', 'md', 'lg', 'xl'],
+        },
+        radius: {
+            control: { type: 'select' },
+            options: ['none', 'sm', 'md', 'lg', 'xl', 'full'],
+        },
+        shadow: {
+            control: { type: 'select' },
+            options: ['none', 'sm', 'md', 'lg', 'xl'],
+        },
+        theme: {
+            control: { type: 'select' },
+            options: ['light', 'dark'],
+        },
+        border: {
+            control: { type: 'boolean' },
+        },
+        hover: {
+            control: { type: 'boolean' },
+        },
     },
-    padding: {
-      control: { type: 'select' },
-      options: ['xs', 'sm', 'md', 'lg', 'xl'],
-    },
-    shape: {
-      control: { type: 'select' },
-      options: ['rectangle', 'hexagon', 'diamond', 'rounded', 'skew'],
-    },
-    border: {
-      control: { type: 'select' },
-      options: ['solid', 'dashed', 'dotted', 'animated', 'none'],
-    },
-    glow: {
-      control: { type: 'boolean' },
-    },
-    scanlines: {
-      control: { type: 'boolean' },
-    },
-  },
 }
 
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const TerminalWindow: Story = {
-  args: {
-    variant: 'terminal',
-    shape: 'rectangle',
-    padding: 'md',
-    scanlines: true,
-    children: (
-      <div>
-        <div className="text-green-400 font-mono text-sm mb-4">
-          <div>$ whoami</div>
-          <div>nerd_user</div>
-          <div>$ ls -la</div>
-          <div>drwxr-xr-x  awesome_project/</div>
-          <div>-rw-r--r--  README.md</div>
-        </div>
-      </div>
-    ),
-  },
+export const Default: Story = {
+    args: {
+        children: (
+            <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Card Title</h3>
+                <p className="text-gray-600">This is a simple card with default styling.</p>
+            </div>
+        ),
+    },
 }
 
-export const MatrixDataPanel: Story = {
-  args: {
-    variant: 'matrix',
-    shape: 'hexagon',
-    padding: 'lg',
-    glow: true,
-    scanlines: true,
-    children: (
-      <div className="text-center">
-        <h3 className="text-green-300 font-mono text-lg mb-4">MATRIX ACCESS</h3>
-        <p className="text-green-400 text-sm mb-4">
-          Connection established...
-          <br />
-          Downloading reality.exe
-        </p>
-        <div className="text-green-500 text-xs font-mono">
-          [████████████████████] 100%
-        </div>
-      </div>
-    ),
-  },
+export const Outlined: Story = {
+    args: {
+        variant: 'outlined',
+        children: (
+            <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Outlined Card</h3>
+                <p className="text-gray-600">This card has a prominent border.</p>
+            </div>
+        ),
+    },
 }
 
-export const CyberDashboard: Story = {
-  args: {
-    variant: 'cyber',
-    shape: 'skew',
-    padding: 'lg',
-    glow: true,
-    border: 'animated',
-    children: (
-      <div>
-        <h3 className="text-cyan-300 font-mono text-xl mb-4">CYBER DASHBOARD</h3>
-        <div className="grid grid-cols-2 gap-4 text-cyan-400 text-sm">
-          <div>CPU: 87%</div>
-          <div>RAM: 64%</div>
-          <div>NET: 1.2GB/s</div>
-          <div>TEMP: 42°C</div>
-        </div>
-        <NerdButton variant="cyber" shape="hexagon" size="sm" className="mt-4">
-          HACK
-        </NerdButton>
-      </div>
-    ),
-  },
+export const Filled: Story = {
+    args: {
+        variant: 'filled',
+        children: (
+            <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Filled Card</h3>
+                <p className="text-gray-600">This card has a filled background.</p>
+            </div>
+        ),
+    },
 }
 
-export const HologramProfile: Story = {
-  args: {
-    variant: 'hologram',
-    shape: 'diamond',
-    padding: 'xl',
-    glow: true,
-    children: (
-      <div className="text-center">
-        <div className="w-16 h-16 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full mx-auto mb-4"></div>
-        <h3 className="text-blue-300 font-mono text-lg mb-2">NERD_USER_2077</h3>
-        <p className="text-blue-400 text-sm mb-4">Level 99 Code Wizard</p>
-        <div className="text-blue-500 text-xs">
-          Skills: React, Vue, TypeScript, Cyberpunk
-        </div>
-      </div>
-    ),
-  },
+export const Ghost: Story = {
+    args: {
+        variant: 'ghost',
+        children: (
+            <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Ghost Card</h3>
+                <p className="text-gray-600">This card has no background or border.</p>
+            </div>
+        ),
+    },
 }
 
-export const NeonAlert: Story = {
-  args: {
-    variant: 'neon',
-    shape: 'rounded',
-    padding: 'md',
-    glow: true,
-    border: 'dashed',
-    children: (
-      <div className="text-center">
-        <div className="text-pink-400 text-2xl mb-2">⚠️</div>
-        <h3 className="text-pink-300 font-mono text-lg mb-2">SYSTEM ALERT</h3>
-        <p className="text-pink-400 text-sm">
-          Nerd level exceeding maximum capacity!
-        </p>
-      </div>
-    ),
-  },
+export const WithHover: Story = {
+    args: {
+        hover: true,
+        children: (
+            <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Hover Effect</h3>
+                <p className="text-gray-600">Hover over this card to see the effect.</p>
+            </div>
+        ),
+    },
 }
 
-export const GlassMorphism: Story = {
-  args: {
-    variant: 'glass',
-    shape: 'rounded',
-    padding: 'lg',
-    children: (
-      <div className="text-center">
-        <h3 className="text-white font-mono text-lg mb-4">GLASS PANEL</h3>
-        <p className="text-white/80 text-sm mb-4">
-          Transparent future technology interface
-        </p>
-        <div className="bg-white/20 rounded p-2 text-white text-xs">
-          Backdrop blur effect active
-        </div>
-      </div>
-    ),
-  },
+export const LargePadding: Story = {
+    args: {
+        padding: 'xl',
+        children: (
+            <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Large Padding</h3>
+                <p className="text-gray-600">This card has extra large padding.</p>
+            </div>
+        ),
+    },
 }
 
-export const PlasmaEnergy: Story = {
-  args: {
-    variant: 'plasma',
-    shape: 'hexagon',
-    padding: 'lg',
-    glow: true,
-    scanlines: true,
-    children: (
-      <div className="text-center">
-        <h3 className="text-orange-200 font-mono text-xl mb-4">PLASMA CORE</h3>
-        <div className="text-orange-300 text-sm mb-4">
-          Energy Level: 9000+
+// Dark Theme Examples
+export const DarkTheme: Story = {
+    args: {
+        theme: 'dark',
+        children: (
+            <div>
+                <h3 className="text-lg font-semibold text-gray-100 mb-2">Dark Theme Card</h3>
+                <p className="text-gray-300">This card uses the dark theme styling.</p>
+            </div>
+        ),
+    },
+    parameters: {
+        backgrounds: { default: 'dark' },
+    },
+}
+
+export const DarkOutlined: Story = {
+    args: {
+        variant: 'outlined',
+        theme: 'dark',
+        children: (
+            <div>
+                <h3 className="text-lg font-semibold text-gray-100 mb-2">Dark Outlined</h3>
+                <p className="text-gray-300">Dark theme with outlined variant.</p>
+            </div>
+        ),
+    },
+    parameters: {
+        backgrounds: { default: 'dark' },
+    },
+}
+
+export const StatCard: Story = {
+    args: {
+        children: (
+            <div className="flex items-center">
+                <div className="flex-shrink-0">
+                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                        <Users className="w-6 h-6 text-blue-600" />
+                    </div>
+                </div>
+                <div className="ml-4">
+                    <p className="text-sm font-medium text-gray-500">Total Users</p>
+                    <p className="text-2xl font-semibold text-gray-900">2,847</p>
+                    <div className="flex items-center text-sm text-green-600">
+                        <TrendingUp className="w-4 h-4 mr-1" />
+                        <span>12% from last month</span>
+                    </div>
+                </div>
+            </div>
+        ),
+    },
+}
+
+export const DarkStatCard: Story = {
+    args: {
+        theme: 'dark',
+        children: (
+            <div className="flex items-center">
+                <div className="flex-shrink-0">
+                    <div className="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center">
+                        <DollarSign className="w-6 h-6 text-blue-400" />
+                    </div>
+                </div>
+                <div className="ml-4">
+                    <p className="text-sm font-medium text-gray-400">Revenue</p>
+                    <p className="text-2xl font-semibold text-gray-100">$54,239</p>
+                    <div className="flex items-center text-sm text-green-400">
+                        <TrendingUp className="w-4 h-4 mr-1" />
+                        <span>8% from last month</span>
+                    </div>
+                </div>
+            </div>
+        ),
+    },
+    parameters: {
+        backgrounds: { default: 'dark' },
+    },
+}
+
+export const ProductCard: Story = {
+    args: {
+        hover: true,
+        children: (
+            <div>
+                <div className="aspect-w-16 aspect-h-9 bg-gray-200 rounded-lg mb-4 h-32"></div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Product Name</h3>
+                <p className="text-gray-600 mb-4">Product description goes here...</p>
+                <div className="flex items-center justify-between">
+                    <span className="text-xl font-bold text-gray-900">$99.99</span>
+                    <Button size="sm">Add to Cart</Button>
+                </div>
+            </div>
+        ),
+    },
+}
+
+export const UserProfileCard: Story = {
+    args: {
+        children: (
+            <div className="text-center">
+                <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                    <User className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-1">John Doe</h3>
+                <p className="text-gray-500 mb-4">Software Engineer</p>
+                <div className="flex justify-center space-x-4 text-sm text-gray-600">
+                    <div className="flex items-center">
+                        <MapPin className="w-4 h-4 mr-1" />
+                        <span>San Francisco</span>
+                    </div>
+                    <div className="flex items-center">
+                        <Calendar className="w-4 h-4 mr-1" />
+                        <span>Joined 2023</span>
+                    </div>
+                </div>
+            </div>
+        ),
+    },
+}
+
+export const Dashboard: Story = {
+    render: () => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-6 bg-gray-50 min-h-screen">
+            <Card>
+                <div className="flex items-center">
+                    <div className="flex-shrink-0">
+                        <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                            <Users className="w-6 h-6 text-blue-600" />
+                        </div>
+                    </div>
+                    <div className="ml-4">
+                        <p className="text-sm font-medium text-gray-500">Total Users</p>
+                        <p className="text-2xl font-semibold text-gray-900">2,847</p>
+                        <div className="flex items-center text-sm text-green-600">
+                            <TrendingUp className="w-4 h-4 mr-1" />
+                            <span>12%</span>
+                        </div>
+                    </div>
+                </div>
+            </Card>
+
+            <Card>
+                <div className="flex items-center">
+                    <div className="flex-shrink-0">
+                        <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                            <DollarSign className="w-6 h-6 text-green-600" />
+                        </div>
+                    </div>
+                    <div className="ml-4">
+                        <p className="text-sm font-medium text-gray-500">Revenue</p>
+                        <p className="text-2xl font-semibold text-gray-900">$54,239</p>
+                        <div className="flex items-center text-sm text-green-600">
+                            <TrendingUp className="w-4 h-4 mr-1" />
+                            <span>8%</span>
+                        </div>
+                    </div>
+                </div>
+            </Card>
+
+            <Card>
+                <div className="flex items-center">
+                    <div className="flex-shrink-0">
+                        <div className="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center">
+                            <ShoppingCart className="w-6 h-6 text-yellow-600" />
+                        </div>
+                    </div>
+                    <div className="ml-4">
+                        <p className="text-sm font-medium text-gray-500">Orders</p>
+                        <p className="text-2xl font-semibold text-gray-900">1,429</p>
+                        <div className="flex items-center text-sm text-red-600">
+                            <TrendingDown className="w-4 h-4 mr-1" />
+                            <span>3%</span>
+                        </div>
+                    </div>
+                </div>
+            </Card>
+
+            <Card>
+                <div className="flex items-center">
+                    <div className="flex-shrink-0">
+                        <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                            <BarChart3 className="w-6 h-6 text-purple-600" />
+                        </div>
+                    </div>
+                    <div className="ml-4">
+                        <p className="text-sm font-medium text-gray-500">Conversion</p>
+                        <p className="text-2xl font-semibold text-gray-900">3.24%</p>
+                        <div className="flex items-center text-sm text-green-600">
+                            <TrendingUp className="w-4 h-4 mr-1" />
+                            <span>0.5%</span>
+                        </div>
+                    </div>
+                </div>
+            </Card>
+
+            <Card className="md:col-span-2 lg:col-span-3" padding="lg">
+                <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-lg font-semibold text-gray-900">Recent Activity</h3>
+                    <Button variant="ghost" size="sm">
+                        <MoreVertical className="w-4 h-4" />
+                    </Button>
+                </div>
+                <div className="space-y-4">
+                    <div className="flex items-center">
+                        <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                            <Users className="w-4 h-4 text-blue-600" />
+                        </div>
+                        <div className="ml-3">
+                            <p className="text-sm font-medium text-gray-900">New user registered</p>
+                            <p className="text-xs text-gray-500">2 minutes ago</p>
+                        </div>
+                    </div>
+                    <div className="flex items-center">
+                        <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                            <DollarSign className="w-4 h-4 text-green-600" />
+                        </div>
+                        <div className="ml-3">
+                            <p className="text-sm font-medium text-gray-900">Payment received</p>
+                            <p className="text-xs text-gray-500">5 minutes ago</p>
+                        </div>
+                    </div>
+                    <div className="flex items-center">
+                        <div className="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center">
+                            <ShoppingCart className="w-4 h-4 text-yellow-600" />
+                        </div>
+                        <div className="ml-3">
+                            <p className="text-sm font-medium text-gray-900">New order placed</p>
+                            <p className="text-xs text-gray-500">10 minutes ago</p>
+                        </div>
+                    </div>
+                </div>
+            </Card>
+
+            <Card padding="lg">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
+                <div className="space-y-3">
+                    <Button fullWidth variant="primary" size="sm">
+                        Create User
+                    </Button>
+                    <Button fullWidth variant="outline" size="sm">
+                        Generate Report
+                    </Button>
+                    <Button fullWidth variant="ghost" size="sm">
+                        View Settings
+                    </Button>
+                </div>
+            </Card>
         </div>
-        <div className="w-full bg-orange-900 rounded-full h-2 mb-4">
-          <div className="bg-gradient-to-r from-orange-500 to-yellow-500 h-2 rounded-full w-4/5 animate-pulse"></div>
-        </div>
-        <NerdButton variant="plasma" shape="pill" size="sm">
-          UNLEASH
-        </NerdButton>
-      </div>
     ),
-  },
+    parameters: {
+        layout: 'fullscreen',
+    },
+}
+
+export const DarkDashboard: Story = {
+    render: () => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-6 bg-gray-900 min-h-screen">
+            <Card theme="dark">
+                <div className="flex items-center">
+                    <div className="flex-shrink-0">
+                        <div className="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center">
+                            <Users className="w-6 h-6 text-blue-400" />
+                        </div>
+                    </div>
+                    <div className="ml-4">
+                        <p className="text-sm font-medium text-gray-400">Total Users</p>
+                        <p className="text-2xl font-semibold text-gray-100">2,847</p>
+                        <div className="flex items-center text-sm text-green-400">
+                            <TrendingUp className="w-4 h-4 mr-1" />
+                            <span>12%</span>
+                        </div>
+                    </div>
+                </div>
+            </Card>
+
+            <Card theme="dark">
+                <div className="flex items-center">
+                    <div className="flex-shrink-0">
+                        <div className="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center">
+                            <DollarSign className="w-6 h-6 text-green-400" />
+                        </div>
+                    </div>
+                    <div className="ml-4">
+                        <p className="text-sm font-medium text-gray-400">Revenue</p>
+                        <p className="text-2xl font-semibold text-gray-100">$54,239</p>
+                        <div className="flex items-center text-sm text-green-400">
+                            <TrendingUp className="w-4 h-4 mr-1" />
+                            <span>8%</span>
+                        </div>
+                    </div>
+                </div>
+            </Card>
+
+            <Card theme="dark" className="md:col-span-2" padding="lg">
+                <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-lg font-semibold text-gray-100">Quick Actions</h3>
+                    <Button variant="ghost" theme="dark" size="sm">
+                        <Settings className="w-4 h-4" />
+                    </Button>
+                </div>
+                <div className="grid grid-cols-2 gap-3">
+                    <Button variant="primary" theme="dark" size="sm">
+                        Create User
+                    </Button>
+                    <Button variant="outline" theme="dark" size="sm">
+                        Generate Report
+                    </Button>
+                </div>
+            </Card>
+        </div>
+    ),
+    parameters: {
+        backgrounds: { default: 'dark' },
+        layout: 'fullscreen',
+    },
+}
+
+export const ContactCard: Story = {
+    args: {
+        children: (
+            <div>
+                <div className="flex items-center space-x-4 mb-4">
+                    <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
+                        <User className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                        <h3 className="text-lg font-semibold text-gray-900">Sarah Johnson</h3>
+                        <p className="text-gray-500">Product Manager</p>
+                    </div>
+                </div>
+                <div className="space-y-2 text-sm text-gray-600">
+                    <div className="flex items-center">
+                        <Mail className="w-4 h-4 mr-2" />
+                        <span>sarah@company.com</span>
+                    </div>
+                    <div className="flex items-center">
+                        <Phone className="w-4 h-4 mr-2" />
+                        <span>+1 (555) 123-4567</span>
+                    </div>
+                    <div className="flex items-center">
+                        <MapPin className="w-4 h-4 mr-2" />
+                        <span>New York, NY</span>
+                    </div>
+                </div>
+            </div>
+        ),
+    },
+}
+
+export const LoginCard: Story = {
+    args: {
+        padding: 'lg',
+        children: (
+            <div className="w-80">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Welcome Back</h2>
+                <div className="space-y-4">
+                    <Input
+                        label="Email"
+                        type="email"
+                        placeholder="Enter your email"
+                        leftIcon={<Mail size={16} />}
+                    />
+                    <Input
+                        label="Password"
+                        type="password"
+                        placeholder="Enter your password"
+                        leftIcon={<User size={16} />}
+                    />
+                    <Button fullWidth variant="primary">
+                        Sign In
+                    </Button>
+                </div>
+            </div>
+        ),
+    },
 }

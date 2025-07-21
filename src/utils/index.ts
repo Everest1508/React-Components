@@ -3,146 +3,164 @@ export const cn = (...classes: (string | undefined | null | false)[]): string =>
   return classes.filter(Boolean).join(' ')
 }
 
-export const getNerdButtonClasses = (
-  variant: string = 'cyber',
+export const getButtonClasses = (
+  variant: string = 'primary',
   size: string = 'md',
-  shape: string = 'hexagon',
+  theme: string = 'light',
   disabled: boolean = false,
   loading: boolean = false,
-  pulse: boolean = false,
-  glow: boolean = false
+  fullWidth: boolean = false
 ): string => {
-  const baseClasses = 'relative inline-flex items-center justify-center font-mono font-bold transition-all duration-300 transform hover:scale-105 focus:outline-none overflow-hidden'
+  const baseClasses = 'inline-flex items-center justify-center gap-2 font-medium rounded-lg transition-all duration-200 focus:outline-none disabled:pointer-events-none disabled:opacity-50'
   
-  const variantClasses = {
-    cyber: 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white border-2 border-cyan-400 shadow-lg shadow-cyan-500/50 hover:shadow-cyan-500/75',
-    neon: 'bg-black text-pink-400 border-2 border-pink-400 shadow-lg shadow-pink-500/50 hover:shadow-pink-500/75 hover:text-pink-300',
-    glitch: 'bg-red-600 text-white border-2 border-red-400 shadow-lg shadow-red-500/50 hover:shadow-red-500/75 animate-pulse',
-    matrix: 'bg-black text-green-400 border-2 border-green-400 shadow-lg shadow-green-500/50 hover:shadow-green-500/75',
-    retro: 'bg-gradient-to-r from-purple-600 to-pink-600 text-white border-2 border-purple-400 shadow-lg shadow-purple-500/50',
-    hologram: 'bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 text-white border-2 border-blue-300 shadow-lg shadow-blue-500/50',
-    plasma: 'bg-gradient-to-r from-orange-500 via-red-500 to-yellow-500 text-white border-2 border-orange-400 shadow-lg shadow-orange-500/50'
+  // Light theme variants
+  const lightVariants = {
+    primary: 'bg-blue-600 text-white hover:bg-blue-700 shadow-sm hover:shadow-md',
+    secondary: 'bg-gray-100 text-gray-900 hover:bg-gray-200 border border-gray-300 shadow-sm hover:shadow-md',
+    outline: 'border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 shadow-sm hover:shadow-md',
+    ghost: 'text-gray-700 hover:bg-gray-100',
+    destructive: 'bg-red-600 text-white hover:bg-red-700 shadow-sm hover:shadow-md',
+    success: 'bg-green-600 text-white hover:bg-green-700 shadow-sm hover:shadow-md',
+    warning: 'bg-yellow-500 text-white hover:bg-yellow-600 shadow-sm hover:shadow-md'
+  }
+  
+  // Dark theme variants
+  const darkVariants = {
+    primary: 'bg-blue-500 text-white hover:bg-blue-600 shadow-sm hover:shadow-md',
+    secondary: 'bg-gray-700 text-gray-100 hover:bg-gray-600 border border-gray-600 shadow-sm hover:shadow-md',
+    outline: 'border border-gray-600 bg-gray-800 text-gray-200 hover:bg-gray-700 shadow-sm hover:shadow-md',
+    ghost: 'text-gray-200 hover:bg-gray-700',
+    destructive: 'bg-red-500 text-white hover:bg-red-600 shadow-sm hover:shadow-md',
+    success: 'bg-green-500 text-white hover:bg-green-600 shadow-sm hover:shadow-md',
+    warning: 'bg-yellow-500 text-white hover:bg-yellow-600 shadow-sm hover:shadow-md'
   }
   
   const sizeClasses = {
-    xs: 'h-6 px-2 text-xs min-w-[2rem]',
-    sm: 'h-8 px-3 text-sm min-w-[3rem]',
-    md: 'h-12 px-6 text-base min-w-[4rem]',
-    lg: 'h-16 px-8 text-lg min-w-[5rem]',
-    xl: 'h-20 px-10 text-xl min-w-[6rem]'
+    sm: 'h-8 px-3 text-sm',
+    md: 'h-10 px-4 text-sm',
+    lg: 'h-12 px-6 text-base'
   }
   
-  const shapeClasses = {
-    hexagon: 'clip-path-hexagon',
-    diamond: 'rotate-45 transform',
-    circle: 'rounded-full aspect-square',
-    pill: 'rounded-full',
-    skew: 'skew-x-12 transform',
-    triangle: 'clip-path-triangle'
-  }
-  
-  const effectClasses = cn(
-    pulse && 'animate-pulse',
-    glow && 'animate-ping',
-    loading && 'animate-spin cursor-wait',
-    disabled && 'opacity-50 cursor-not-allowed grayscale'
-  )
+  const variantClasses = theme === 'dark' ? darkVariants : lightVariants
+  const widthClass = fullWidth ? 'w-full' : ''
   
   return cn(
     baseClasses,
     variantClasses[variant as keyof typeof variantClasses],
     sizeClasses[size as keyof typeof sizeClasses],
-    shapeClasses[shape as keyof typeof shapeClasses],
-    effectClasses
+    widthClass,
+    loading && 'cursor-wait',
+    disabled && 'cursor-not-allowed'
   )
 }
 
-export const getNerdInputClasses = (
-  variant: string = 'terminal',
+export const getInputClasses = (
+  variant: string = 'default',
+  size: string = 'md',
+  theme: string = 'light',
   disabled: boolean = false,
-  scanline: boolean = false,
-  glow: boolean = false
+  error: boolean = false
 ): string => {
-  const baseClasses = 'flex h-12 w-full font-mono text-sm transition-all duration-300 focus:outline-none relative overflow-hidden'
+  const baseClasses = 'w-full rounded-lg border transition-all duration-200 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50'
   
-  const variantClasses = {
-    terminal: 'bg-black text-green-400 border-2 border-green-400 placeholder:text-green-600 focus:shadow-lg focus:shadow-green-500/50',
-    matrix: 'bg-gray-900 text-green-300 border-2 border-green-500 placeholder:text-green-700 focus:shadow-lg focus:shadow-green-500/50',
-    cyber: 'bg-slate-900 text-cyan-400 border-2 border-cyan-400 placeholder:text-cyan-600 focus:shadow-lg focus:shadow-cyan-500/50',
-    neon: 'bg-black text-pink-400 border-2 border-pink-400 placeholder:text-pink-600 focus:shadow-lg focus:shadow-pink-500/50',
-    hologram: 'bg-gradient-to-r from-blue-900/50 to-purple-900/50 text-blue-300 border-2 border-blue-400 placeholder:text-blue-600 focus:shadow-lg focus:shadow-blue-500/50',
-    glitch: 'bg-red-900 text-red-300 border-2 border-red-400 placeholder:text-red-600 focus:shadow-lg focus:shadow-red-500/50 animate-pulse'
+  // Light theme variants
+  const lightVariants = {
+    default: 'bg-white border-gray-300 text-gray-900 placeholder:text-gray-500 focus:border-blue-500',
+    filled: 'bg-gray-50 border-gray-200 text-gray-900 placeholder:text-gray-500 focus:bg-white focus:border-blue-500',
+    flushed: 'bg-transparent border-0 border-b-2 border-gray-300 rounded-none px-0 focus:border-blue-500 text-gray-900 placeholder:text-gray-500',
+    unstyled: 'bg-transparent border-0 text-gray-900 placeholder:text-gray-500'
   }
   
-  const effectClasses = cn(
-    scanline && 'before:absolute before:inset-0 before:bg-gradient-to-b before:from-transparent before:via-white/5 before:to-transparent before:animate-pulse',
-    glow && 'animate-pulse',
-    disabled && 'opacity-50 cursor-not-allowed grayscale'
-  )
+  // Dark theme variants
+  const darkVariants = {
+    default: 'bg-gray-800 border-gray-600 text-gray-100 placeholder:text-gray-400 focus:border-blue-400',
+    filled: 'bg-gray-700 border-gray-600 text-gray-100 placeholder:text-gray-400 focus:bg-gray-800 focus:border-blue-400',
+    flushed: 'bg-transparent border-0 border-b-2 border-gray-600 rounded-none px-0 focus:border-blue-400 text-gray-100 placeholder:text-gray-400',
+    unstyled: 'bg-transparent border-0 text-gray-100 placeholder:text-gray-400'
+  }
+  
+  const sizeClasses = {
+    sm: 'h-8 px-3 text-sm',
+    md: 'h-10 px-4 text-sm',
+    lg: 'h-12 px-4 text-base'
+  }
+  
+  const variantClasses = theme === 'dark' ? darkVariants : lightVariants
+  const errorClasses = error 
+    ? (theme === 'dark' ? 'border-red-400 focus:border-red-400' : 'border-red-500 focus:border-red-500')
+    : ''
   
   return cn(
     baseClasses,
     variantClasses[variant as keyof typeof variantClasses],
-    'px-4 py-3',
-    effectClasses
+    sizeClasses[size as keyof typeof sizeClasses],
+    errorClasses
   )
 }
 
-export const getNerdCardClasses = (
-  variant: string = 'terminal',
+export const getCardClasses = (
+  variant: string = 'elevated',
   padding: string = 'md',
-  shape: string = 'rectangle',
-  glow: boolean = false,
-  scanlines: boolean = false,
-  border: string = 'solid'
+  radius: string = 'md',
+  shadow: string = 'sm',
+  theme: string = 'light',
+  border: boolean = false,
+  hover: boolean = false
 ): string => {
-  const baseClasses = 'relative transition-all duration-300 font-mono overflow-hidden'
+  const baseClasses = 'transition-all duration-200'
   
-  const variantClasses = {
-    terminal: 'bg-black text-green-400 border-2 border-green-400 shadow-lg shadow-green-500/25',
-    hologram: 'bg-gradient-to-br from-blue-900/30 to-purple-900/30 backdrop-blur-sm text-blue-300 border-2 border-blue-400 shadow-lg shadow-blue-500/25',
-    cyber: 'bg-gradient-to-br from-slate-900 to-cyan-900 text-cyan-400 border-2 border-cyan-400 shadow-lg shadow-cyan-500/25',
-    matrix: 'bg-gray-900 text-green-300 border-2 border-green-500 shadow-lg shadow-green-500/25',
-    neon: 'bg-black text-pink-400 border-2 border-pink-400 shadow-lg shadow-pink-500/25',
-    glass: 'bg-white/10 backdrop-blur-md text-white border border-white/20 shadow-lg shadow-white/10',
-    plasma: 'bg-gradient-to-br from-orange-900/50 to-red-900/50 text-orange-300 border-2 border-orange-400 shadow-lg shadow-orange-500/25'
+  // Light theme variants
+  const lightVariants = {
+    elevated: 'bg-white border border-gray-200',
+    outlined: 'bg-white border-2 border-gray-300',
+    filled: 'bg-gray-50 border border-gray-200',
+    ghost: 'bg-transparent'
+  }
+  
+  // Dark theme variants
+  const darkVariants = {
+    elevated: 'bg-gray-800 border border-gray-700',
+    outlined: 'bg-gray-800 border-2 border-gray-600',
+    filled: 'bg-gray-700 border border-gray-600',
+    ghost: 'bg-transparent'
   }
   
   const paddingClasses = {
-    xs: 'p-2',
+    none: 'p-0',
     sm: 'p-4',
     md: 'p-6',
     lg: 'p-8',
-    xl: 'p-12'
+    xl: 'p-10'
   }
   
-  const shapeClasses = {
-    rectangle: 'rounded-none',
-    hexagon: 'clip-path-hexagon-card',
-    diamond: 'rotate-45 transform',
-    rounded: 'rounded-2xl',
-    skew: 'skew-y-3 transform'
+  const radiusClasses = {
+    none: 'rounded-none',
+    sm: 'rounded-sm',
+    md: 'rounded-lg',
+    lg: 'rounded-xl',
+    xl: 'rounded-2xl',
+    full: 'rounded-full'
   }
   
-  const borderClasses = {
-    solid: '',
-    dashed: 'border-dashed',
-    dotted: 'border-dotted',
-    animated: 'animate-pulse border-dashed',
-    none: 'border-none'
+  const shadowClasses = {
+    none: 'shadow-none',
+    sm: 'shadow-sm',
+    md: 'shadow-md',
+    lg: 'shadow-lg',
+    xl: 'shadow-xl'
   }
   
-  const effectClasses = cn(
-    glow && 'animate-pulse',
-    scanlines && 'before:absolute before:inset-0 before:bg-gradient-to-b before:from-transparent before:via-white/5 before:to-transparent before:animate-pulse before:pointer-events-none'
-  )
+  const variantClasses = theme === 'dark' ? darkVariants : lightVariants
+  const hoverClasses = hover ? 'hover:shadow-lg hover:-translate-y-1 cursor-pointer' : ''
+  const borderClass = border ? (theme === 'dark' ? 'border-2 border-gray-600' : 'border-2 border-gray-300') : ''
   
   return cn(
     baseClasses,
     variantClasses[variant as keyof typeof variantClasses],
     paddingClasses[padding as keyof typeof paddingClasses],
-    shapeClasses[shape as keyof typeof shapeClasses],
-    borderClasses[border as keyof typeof borderClasses],
-    effectClasses
+    radiusClasses[radius as keyof typeof radiusClasses],
+    shadowClasses[shadow as keyof typeof shadowClasses],
+    hoverClasses,
+    borderClass
   )
 }

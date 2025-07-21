@@ -5,37 +5,47 @@ export interface BaseComponentProps {
   'data-testid'?: string
 }
 
-export interface NerdButtonProps extends BaseComponentProps {
-  variant?: 'cyber' | 'neon' | 'glitch' | 'matrix' | 'retro' | 'hologram' | 'plasma'
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
-  shape?: 'hexagon' | 'diamond' | 'circle' | 'pill' | 'skew' | 'triangle'
+export interface ButtonProps extends BaseComponentProps {
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'destructive' | 'success' | 'warning'
+  size?: 'sm' | 'md' | 'lg'
+  theme?: 'light' | 'dark'
   disabled?: boolean
   loading?: boolean
-  pulse?: boolean
-  glow?: boolean
+  fullWidth?: boolean
+  leftIcon?: React.ReactNode
+  rightIcon?: React.ReactNode
   children: React.ReactNode | string
   onClick?: () => void
+  type?: 'button' | 'submit' | 'reset'
 }
 
-export interface NerdInputProps extends BaseComponentProps {
-  type?: 'text' | 'email' | 'password' | 'number'
-  variant?: 'terminal' | 'matrix' | 'cyber' | 'neon' | 'hologram' | 'glitch'
+export interface InputProps extends BaseComponentProps {
+  type?: 'text' | 'email' | 'password' | 'number' | 'tel' | 'url' | 'search'
+  variant?: 'default' | 'filled' | 'flushed' | 'unstyled'
+  size?: 'sm' | 'md' | 'lg'
+  theme?: 'light' | 'dark'
   placeholder?: string
   value?: string
   defaultValue?: string
   disabled?: boolean
   required?: boolean
-  scanline?: boolean
-  glow?: boolean
+  error?: boolean
+  helperText?: string
+  label?: string
+  leftIcon?: React.ReactNode
+  rightIcon?: React.ReactNode
   onChange?: (value: string) => void
+  onFocus?: () => void
+  onBlur?: () => void
 }
 
-export interface NerdCardProps extends BaseComponentProps {
+export interface CardProps extends BaseComponentProps {
   children: React.ReactNode
-  variant?: 'terminal' | 'hologram' | 'cyber' | 'matrix' | 'neon' | 'glass' | 'plasma'
-  padding?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
-  shape?: 'rectangle' | 'hexagon' | 'diamond' | 'rounded' | 'skew'
-  glow?: boolean
-  scanlines?: boolean
-  border?: 'solid' | 'dashed' | 'dotted' | 'animated' | 'none'
+  variant?: 'elevated' | 'outlined' | 'filled' | 'ghost'
+  padding?: 'none' | 'sm' | 'md' | 'lg' | 'xl'
+  radius?: 'none' | 'sm' | 'md' | 'lg' | 'xl' | 'full'
+  shadow?: 'none' | 'sm' | 'md' | 'lg' | 'xl'
+  theme?: 'light' | 'dark'
+  border?: boolean
+  hover?: boolean
 }

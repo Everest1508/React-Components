@@ -1,39 +1,39 @@
 import React from 'react'
-import { NerdButtonProps } from '../types'
-import { createNerdButtonProps } from '../core/button'
+import { ButtonProps } from '../types'
+import { createButtonProps } from '../core/button'
+import { Loader2 } from 'lucide-react'
 
-export const NerdButton: React.FC<NerdButtonProps> = (props) => {
-  const { children, loading, shape, variant, ...buttonProps } = createNerdButtonProps(props)
+export const Button: React.FC<ButtonProps> = (props) => {
+  const { children, loading, leftIcon, rightIcon, theme, ...buttonProps } = createButtonProps(props)
 
   return (
     <button {...buttonProps}>
-      {/* Glitch effect overlay */}
-      {variant === 'glitch' && (
-        <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 to-blue-500/20 animate-pulse pointer-events-none" />
+      {/* Left icon */}
+      {leftIcon && !loading && (
+        <span className="flex-shrink-0">
+          {leftIcon}
+        </span>
       )}
       
-      {/* Matrix rain effect */}
-      {variant === 'matrix' && (
-        <div className="absolute inset-0 opacity-20 pointer-events-none">
-          <div className="animate-pulse text-xs">01010101</div>
-        </div>
-      )}
-      
-      {/* Loading spinner - more cyberpunk style */}
+      {/* Loading spinner */}
       {loading && (
-        <div className="flex items-center mr-2">
-          <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
+        <div className="flex items-center">
+          <Loader2 className="animate-spin h-4 w-4" />
         </div>
       )}
       
-      {/* Button content with special effects for diamond shape */}
-      <span className={shape === 'diamond' ? '-rotate-45 transform' : ''}>
-        {children}
-      </span>
+      {/* Button text */}
+      {children && (
+        <span className="truncate">
+          {children}
+        </span>
+      )}
       
-      {/* Hologram shimmer effect */}
-      {variant === 'hologram' && (
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 animate-pulse pointer-events-none" />
+      {/* Right icon */}
+      {rightIcon && !loading && (
+        <span className="flex-shrink-0">
+          {rightIcon}
+        </span>
       )}
     </button>
   )

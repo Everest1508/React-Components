@@ -1,26 +1,29 @@
-import { NerdButtonProps } from '../types'
-import { getNerdButtonClasses } from '../utils'
+import { ButtonProps } from '../types'
+import { getButtonClasses } from '../utils'
 
-// Core nerd button logic that can be used by any framework
-export const createNerdButtonProps = (props: NerdButtonProps) => {
+// Core button logic that can be used by any framework
+export const createButtonProps = (props: ButtonProps) => {
   const {
-    variant = 'cyber',
+    variant = 'primary',
     size = 'md',
-    shape = 'hexagon',
+    theme = 'light',
     disabled = false,
     loading = false,
-    pulse = false,
-    glow = false,
+    fullWidth = false,
     className = '',
     onClick,
     children,
+    leftIcon,
+    rightIcon,
+    type = 'button',
     ...rest
   } = props
 
-  const classes = getNerdButtonClasses(variant, size, shape, disabled, loading, pulse, glow)
+  const classes = getButtonClasses(variant, size, theme, disabled, loading, fullWidth)
   const finalClassName = `${classes} ${className}`.trim()
 
   return {
+    type,
     className: finalClassName,
     disabled: disabled || loading,
     onClick: disabled || loading ? undefined : onClick,
@@ -28,10 +31,9 @@ export const createNerdButtonProps = (props: NerdButtonProps) => {
     'aria-busy': loading,
     loading,
     children,
-    variant,
-    shape,
-    pulse,
-    glow,
+    leftIcon,
+    rightIcon,
+    theme,
     ...rest
   }
 }

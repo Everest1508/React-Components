@@ -1,29 +1,26 @@
-import { NerdCardProps } from '../types'
-import { getNerdCardClasses } from '../utils'
+import { CardProps } from '../types'
+import { getCardClasses } from '../utils'
 
-// Core nerd card logic that can be used by any framework
-export const createNerdCardProps = (props: NerdCardProps) => {
+// Core card logic that can be used by any framework
+export const createCardProps = (props: CardProps) => {
   const {
-    variant = 'terminal',
+    variant = 'elevated',
     padding = 'md',
-    shape = 'rectangle',
-    glow = false,
-    scanlines = false,
-    border = 'solid',
+    radius = 'md',
+    shadow = 'sm',
+    theme = 'light',
+    border = false,
+    hover = false,
     className = '',
     ...rest
   } = props
 
-  const classes = getNerdCardClasses(variant, padding, shape, glow, scanlines, border)
+  const classes = getCardClasses(variant, padding, radius, shadow, theme, border, hover)
   const finalClassName = `${classes} ${className}`.trim()
 
   return {
     className: finalClassName,
-    variant,
-    shape,
-    glow,
-    scanlines,
-    border,
+    theme,
     ...rest
   }
 }
