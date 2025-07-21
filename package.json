@@ -32,7 +32,9 @@
     "build-storybook": "storybook build",
     "test": "vitest",
     "lint": "eslint src --ext .ts,.tsx,.vue",
-    "format": "prettier --write src"
+    "format": "prettier --write src",
+    "deploy-storybook": "storybook-to-ghpages",
+    "deploy-storybook-gh": "gh-pages -d storybook-static"
   },
   "peerDependencies": {
     "react": ">=16.8.0",
@@ -72,6 +74,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.0",
     "eslint-plugin-vue": "^9.20.0",
+    "gh-pages": "^6.3.0",
     "postcss": "^8.4.0",
     "prettier": "^3.2.0",
     "react": "^18.2.0",
