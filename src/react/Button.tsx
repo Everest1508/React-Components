@@ -1,35 +1,40 @@
 import React from 'react'
-import { ButtonProps } from '../types'
-import { createButtonProps } from '../core/button'
+import { NerdButtonProps } from '../types'
+import { createNerdButtonProps } from '../core/button'
 
-export const Button: React.FC<ButtonProps> = (props) => {
-  const { children, loading, ...buttonProps } = createButtonProps(props)
+export const NerdButton: React.FC<NerdButtonProps> = (props) => {
+  const { children, loading, shape, variant, ...buttonProps } = createNerdButtonProps(props)
 
   return (
     <button {...buttonProps}>
-      {loading && (
-        <svg
-          className="animate-spin -ml-1 mr-2 h-4 w-4"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-        >
-          <circle
-            className="opacity-25"
-            cx="12"
-            cy="12"
-            r="10"
-            stroke="currentColor"
-            strokeWidth="4"
-          />
-          <path
-            className="opacity-75"
-            fill="currentColor"
-            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-          />
-        </svg>
+      {/* Glitch effect overlay */}
+      {variant === 'glitch' && (
+        <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 to-blue-500/20 animate-pulse pointer-events-none" />
       )}
-      {children}
+      
+      {/* Matrix rain effect */}
+      {variant === 'matrix' && (
+        <div className="absolute inset-0 opacity-20 pointer-events-none">
+          <div className="animate-pulse text-xs">01010101</div>
+        </div>
+      )}
+      
+      {/* Loading spinner - more cyberpunk style */}
+      {loading && (
+        <div className="flex items-center mr-2">
+          <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
+        </div>
+      )}
+      
+      {/* Button content with special effects for diamond shape */}
+      <span className={shape === 'diamond' ? '-rotate-45 transform' : ''}>
+        {children}
+      </span>
+      
+      {/* Hologram shimmer effect */}
+      {variant === 'hologram' && (
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 animate-pulse pointer-events-none" />
+      )}
     </button>
   )
 }

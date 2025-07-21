@@ -1,26 +1,44 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { Button } from './Button'
+import { NerdButton } from './Button'
 
-const meta: Meta<typeof Button> = {
-  title: 'React/Button',
-  component: Button,
+const meta: Meta<typeof NerdButton> = {
+  title: 'Nerd/NerdButton',
+  component: NerdButton,
   parameters: {
     layout: 'centered',
+    backgrounds: {
+      default: 'dark',
+      values: [
+        { name: 'dark', value: '#0f0f0f' },
+        { name: 'matrix', value: '#001100' },
+        { name: 'cyber', value: '#0a0a0a' },
+      ],
+    },
   },
   tags: ['autodocs'],
   argTypes: {
     variant: {
       control: { type: 'select' },
-      options: ['primary', 'secondary', 'outline', 'ghost'],
+      options: ['cyber', 'neon', 'glitch', 'matrix', 'retro', 'hologram', 'plasma'],
     },
     size: {
       control: { type: 'select' },
-      options: ['sm', 'md', 'lg'],
+      options: ['xs', 'sm', 'md', 'lg', 'xl'],
+    },
+    shape: {
+      control: { type: 'select' },
+      options: ['hexagon', 'diamond', 'circle', 'pill', 'skew', 'triangle'],
     },
     disabled: {
       control: { type: 'boolean' },
     },
     loading: {
+      control: { type: 'boolean' },
+    },
+    pulse: {
+      control: { type: 'boolean' },
+    },
+    glow: {
       control: { type: 'boolean' },
     },
   },
@@ -29,58 +47,105 @@ const meta: Meta<typeof Button> = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Primary: Story = {
+export const CyberHexagon: Story = {
   args: {
-    children: 'Button',
-    variant: 'primary',
+    children: 'HACK',
+    variant: 'cyber',
+    shape: 'hexagon',
+    glow: true,
   },
 }
 
-export const Secondary: Story = {
+export const NeonDiamond: Story = {
   args: {
-    children: 'Button',
-    variant: 'secondary',
+    children: 'NEON',
+    variant: 'neon',
+    shape: 'diamond',
+    pulse: true,
   },
 }
 
-export const Outline: Story = {
+export const GlitchTriangle: Story = {
   args: {
-    children: 'Button',
-    variant: 'outline',
+    children: 'ERROR',
+    variant: 'glitch',
+    shape: 'triangle',
+    glow: true,
   },
 }
 
-export const Ghost: Story = {
+export const MatrixCircle: Story = {
   args: {
-    children: 'Button',
-    variant: 'ghost',
+    children: 'ENTER',
+    variant: 'matrix',
+    shape: 'circle',
+    pulse: true,
   },
 }
 
-export const Small: Story = {
+export const HologramSkew: Story = {
   args: {
-    children: 'Button',
-    size: 'sm',
+    children: 'FUTURE',
+    variant: 'hologram',
+    shape: 'skew',
+    glow: true,
   },
 }
 
-export const Large: Story = {
+export const PlasmaPill: Story = {
   args: {
-    children: 'Button',
+    children: 'ENERGY',
+    variant: 'plasma',
+    shape: 'pill',
+    pulse: true,
+  },
+}
+
+export const RetroHexagon: Story = {
+  args: {
+    children: '80s VIBES',
+    variant: 'retro',
+    shape: 'hexagon',
     size: 'lg',
   },
 }
 
-export const Loading: Story = {
+export const LoadingCyber: Story = {
   args: {
-    children: 'Button',
+    children: 'LOADING...',
+    variant: 'cyber',
+    shape: 'hexagon',
     loading: true,
+    glow: true,
   },
 }
 
-export const Disabled: Story = {
+export const DisabledMatrix: Story = {
   args: {
-    children: 'Button',
+    children: 'DISABLED',
+    variant: 'matrix',
+    shape: 'diamond',
     disabled: true,
+  },
+}
+
+export const MegaButton: Story = {
+  args: {
+    children: 'MEGA NERD',
+    variant: 'hologram',
+    shape: 'hexagon',
+    size: 'xl',
+    glow: true,
+    pulse: true,
+  },
+}
+
+export const TinyGlitch: Story = {
+  args: {
+    children: 'X',
+    variant: 'glitch',
+    shape: 'circle',
+    size: 'xs',
+    glow: true,
   },
 }

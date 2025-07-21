@@ -1,4 +1,4 @@
 // React-specific exports
-export { Button } from './Button'
-export { Input } from './Input'
-export { Card } from './Card'
+export { NerdButton } from './Button'
+export { NerdInput } from './Input'
+export { NerdCard } from './Card'

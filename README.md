@@ -14,11 +14,11 @@ A modern, framework-agnostic UI components library that works seamlessly with Re
 ## Installation
 
 ```bash
-npm install @your-org/ui-components
+npm install nerd-components
 # or
-yarn add @your-org/ui-components
+yarn add nerd-components
 # or
-pnpm add @your-org/ui-components
+pnpm add nerd-components
 ```
 
 ## Usage
@@ -26,7 +26,7 @@ pnpm add @your-org/ui-components
 ### React / Next.js
 
 ```tsx
-import { Button, Input, Card } from '@your-org/ui-components/react'
+import { Button, Input, Card } from 'nerd-components/react'
 
 function App() {
   return (
@@ -54,7 +54,7 @@ function App() {
 
 <script setup>
 import { ref } from 'vue'
-import { Button, Input, Card } from '@your-org/ui-components/vue'
+import { Button, Input, Card } from 'nerd-components/vue'
 
 const name = ref('')
 
@@ -109,7 +109,7 @@ const handleSubmit = () => {
 This library uses Tailwind CSS. Make sure to include the styles in your project:
 
 ```css
-@import '@your-org/ui-components/styles';
+@import 'nerd-components/styles';
 ```
 
 Or if you're using Tailwind CSS in your project, you can extend the content paths:
@@ -119,7 +119,7 @@ Or if you're using Tailwind CSS in your project, you can extend the content path
 module.exports = {
   content: [
     // ... your existing paths
-    './node_modules/@your-org/ui-components/dist/**/*.{js,ts,jsx,tsx,vue}'
+    './node_modules/nerd-components/dist/**/*.{js,ts,jsx,tsx,vue}'
   ],
   // ... rest of config
 }

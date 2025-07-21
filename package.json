@@ -1,5 +1,5 @@
 {
-  "name": "@your-org/ui-components",
+  "name": "nerd-components",
   "version": "1.0.0",
   "description": "Universal UI components library for React, Vue, and Next.js",
   "type": "module",
@@ -97,5 +97,8 @@
     "library"
   ],
   "author": "Your Name",
-  "license": "MIT"
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  }
 }
