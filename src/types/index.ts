@@ -5,6 +5,13 @@ export interface BaseComponentProps {
   'data-testid'?: string
 }
 
+// Re-export all component types
+export * from './button'
+export * from './input'
+export * from './card'
+export * from './table'
+
+// Legacy exports for backward compatibility
 export interface ButtonProps extends BaseComponentProps {
   variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'destructive' | 'success' | 'warning'
   size?: 'sm' | 'md' | 'lg'

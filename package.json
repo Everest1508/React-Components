@@ -1,7 +1,7 @@
 {
   "name": "nerd-components",
-  "version": "1.0.0",
-  "description": "Universal UI components library for React, Vue, and Next.js",
+  "version": "1.2.0",
+  "description": "nerd library",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
